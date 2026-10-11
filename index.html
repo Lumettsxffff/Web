@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHOBOS CAFETERIA</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    min-height:100vh;
+    background:url("https://media.discordapp.net/attachments/1548881625306239080/1553540549603229696/89fcd6e9-e342-41a8-93a7-6db8fbc1106a.jpg?ex=6acac262&is=6ac970e2&hm=8877cb72bca23c08d234f26773198e608a4ae909706b9cd3b9817a0b911221fb&=&format=webp&width=179&height=320") no-repeat center center fixed;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    position:relative;
+}
+.panel{
+    width:100%;
+    max-width:900px;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(8px);
+    border-radius:30px;
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,.15);
+}
+.top{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+.user-count{
+    position:absolute;
+    left:0;
+    background:white;
+    padding:10px 20px;
+    border-radius:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+    font-weight:bold;
+    color:#6e41b0;
+    font-size:14px;
+    text-align:center;
+    line-height:1.4;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.logo img{
+    width:50px;
+}
+.logo h1{
+    color:#6e41b0;
+    font-size:32px;
+    text-align:center;
+}
+.money{
+    position:absolute;
+    right:0;
+    background:white;
+    padding:10px 20px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+.money img{
+    width:35px;
+}
+.money span{
+    font-size:30px;
+    font-weight:bold;
+    color:#6e41b0;
+}
+.main{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+.pet{
+    text-align:center;
+}
+.info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+}
+.info p{
+    color:#555;
+    line-height:1.7;
+}
+.gain{
+    margin-top:30px;
+    background:#dcffd8;
+    padding:15px;
+    border-radius:15px;
+    color:#42753f;
+    font-weight:bold;
+}
+.user-profile-section{
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+    color:#6e41b0;
+}
+.user-profile-section input{
+    padding:8px 15px;
+    border-radius:12px;
+    border:2px solid #6e41b0;
+    outline:none;
+    font-size:14px;
+    font-weight:bold;
+    color:#333;
+    text-align:center;
+}
+.leaderboards-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:10px;
+}
+.board-card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+.board-card h3{
+    color:#6e41b0;
+    text-align:center;
+    font-size:16px;
+    margin-bottom:12px;
+    border-bottom:2px solid #f0f0f0;
+    padding-bottom:8px;
+}
+.board-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.board-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+    padding:6px 10px;
+    border-radius:10px;
+    background:#f9f9f9;
+}
+.board-item.highlight{
+    background:#f0e6ff;
+    border:1px solid #6e41b0;
+    font-weight:bold;
+}
+.board-rank{
+    font-weight:bold;
+    color:#6e41b0;
+    width:25px;
+}
+.board-name{
+    flex:1;
+    color:#333;
+    text-align:left;
+}
+.board-val{
+    font-weight:bold;
+    color:#555;
+}
+.shop{
+    margin-top:10px;
+}
+.shop h2{
+    margin-bottom:20px;
+    color:#6e41b0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    font-size: 20px;
+}
+.shop h2 img{
+    width:35px;
+    height:auto;
+}
+.items{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    align-items: stretch;
+}
+.item{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height: 100%;
+}
+.item h3{
+    margin-bottom:10px;
+    font-size:16px;
+    text-align:center;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.img-container {
+    width: 100%;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.item img{
+    display:block;
+    max-width:85px;
+    max-height:85px;
+    width:auto;
+    height:auto;
+    object-fit: contain;
+}
+.items .item:last-child img {
+    max-width: 110px;
+}
+.item-bottom-content {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item p{
+    text-align:center;
+    width:100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+    color: #555;
+}
+.buy-controls{
+    display:flex;
+    gap:6px;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+}
+.quantity-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f0f0f0;
+    border-radius:10px;
+    padding:2px;
+}
+.qty-btn{
+    border:none;
+    background:transparent;
+    color:#6e41b0;
+    font-weight:bold;
+    font-size:14px;
+    width:22px;
+    height:28px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.qty-btn:hover{
+    color:#4a2a7a;
+}
+.qty-val{
+    font-size:13px;
+    font-weight:bold;
+    color:#333;
+    min-width:18px;
+    text-align:center;
+}
+.item button.buy-btn{
+    border:none;
+    background:#8fd17a;
+    color:white;
+    padding:8px 10px;
+    border-radius:10px;
+    cursor:pointer;
+    flex:1;
+    font-weight:bold;
+}
+.item button.buy-btn:hover{
+    background:#78be63;
+}
+.original-price{
+    text-decoration:line-through;
+    color:#aaa;
+    margin-right:5px;
+    font-size:13px;
+}
+.discounted-price{
+    color:#6e41b0;
+    font-weight:bold;
+    font-size:16px;
+}
+.discount-container {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4px;
+}
+.discount-label{
+    font-size:11px;
+    font-weight:bold;
+    color:#6e41b0;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    text-align:center;
+}
+
+/* Ventanas emergentes */
+.popup-window {
+    position: fixed;
+    width: 400px;
+    max-width: 90vw;
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border: 4px solid #4a4a4a;
+    z-index: 1000;
+    overflow: hidden;
+    animation: popIn 0.3s ease-out;
+}
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.popup-header {
+    background: #e2e2e2;
+    color: white;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #4a4a4a;
+}
+.popup-header span {
+    color: #ffffff;
+}
+.popup-btn-close {
+    background: #ff6b6b;
+    color: #5c0000;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid #a83232;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.popup-btn-close:hover {
+    background: #ff4c4c;
+}
+.popup-body {
+    padding: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+}
+.popup-body img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Capa de Blackout */
+#blackoutLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 9999;
+    display: none;
+    pointer-events: none;
+    mix-blend-mode: normal;
+}
+
+/* --- ESTILOS DE CONTADORES DE EVENTOS ABAJO DEL TODO --- */
+.event-counters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 10px;
+}
+.counter-card {
+    background: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.counter-card img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.counter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.counter-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #6e41b0;
+}
+.counter-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- REGLAS RESPONSIVAS PARA MÓVILES --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .panel {
+        padding: 15px;
+        border-radius: 20px;
+    }
+    .top {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .user-count, .money {
+        position: static;
+        width: 100%;
+        justify-content: center;
+    }
+    .logo h1 {
+        font-size: 24px;
+    }
+    .leaderboards-container {
+        grid-template-columns: 1fr;
+    }
+    /* Minimizar ventanas emergentes en móviles solamente */
+    .popup-window {
+        width: 250px !important;
+        max-width: 75vw !important;
+    }
+    .popup-body img {
+        max-height: 160px !important;
+    }
+    .items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .item {
+        padding: 10px;
+    }
+    .shop h2 {
+        font-size: 16px;
+        gap: 8px;
+    }
+    .event-counters-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="blackoutLayer"></div>
+
+<div class="panel">
+<div class="top">
+<div class="user-count">
+    👤 TOTAL VISITORS:<br>
+    <span id="newUsersCount">0</span>
+</div>
+<div class="logo">
+<img src="./Assets/estrella.png">
+<h1>PHOBOS CAFETERIA</h1>
+<img src="./Assets/estrella.png">
+</div>
+<div class="money">
+<img src="./Assets/moneda.png">
+<span id="coins">0</span>
+</div>
+</div>
+<div class="main">
+<div class="pet">
+<div class="info">
+<p>
+◟.         You must wait at least one minute on this page to get the rewards.            ꯭            ░ུ ⑅
+</p>
+<div class="gain" id="gainText">
+˳͡ ͜𝕲 ◞.           REWARD INCOMING...          യ ░ུ ⑅
+</div>
+</div>
+</div>
+<div class="user-profile-section">
+    <label for="usernameInput">USERNAME:</label>
+    <input type="text" id="usernameInput" maxlength="12" placeholder="Tu Nombre" oninput="saveUsername(this.value)">
+</div>
+<div class="leaderboards-container">
+    <div class="board-card">
+        <h3>🏆 LEADERBOARD STARS 🏆</h3>
+        <ul class="board-list" id="starsBoard"></ul>
+    </div>
+    <div class="board-card">
+        <h3>🍽️ LEADERBOARD DISHES BOUGHT 🍽️ </h3>
+        <ul class="board-list" id="itemsBoard"></ul>
+    </div>
+</div>
+<div class="shop">
+<h2 style="text-align: center;"><img src="./Assets/Alien.png">⏝⏝    ⠀⠀ดาว⠀MENU⠀ดาว    ⠀   ⏝⏝<img src="./Assets/Alien.png"></h2>
+<div class="items">
+<div class="item">
+<h3>PIZZA</h3>
+<div class="img-container"><img src="./Assets/Pizza Slices.png"></div>
+<p>240 ⭐</p>
+<button onclick="buy(240, event)">BUY</button>
+</div>
+<div class="item">
+<h3>SPAGHETTI</h3>
+<div class="img-container"><img src="./Assets/Spaghetti Goober.png"></div>
+<p>330 ⭐</p>
+<button onclick="buy(330, event)">BUY</button>
+</div>
+<div class="item">
+<h3>ICE CREAM</h3>
+<div class="img-container"><img src="./Assets/Dandy Ice Cream.png"></div>
+<p>120 ⭐</p>
+<button onclick="buy(120, event)">BUY</button>
+</div>
+<div class="item">
+<h3>JUICE</h3>
+<div class="img-container"><img src="./Assets/Juice.png"></div>
+<p>100 ⭐</p>
+<button onclick="buy(100, event)">BUY</button>
+</div>
+<div class="item">
+<h3>CHOCO-ROLL</h3>
+<div class="img-container"><img src="./Assets/Cosmo Roll.png"></div>
+<p>270 ⭐</p>
+<button onclick="buy(270, event)">BUY</button>
+</div>
+<div class="item">
+<h3>COOKIE</h3>
+<div class="img-container"><img src="./Assets/Astro Cookie.png"></div>
+<p>200 ⭐</p>
+<button onclick="buy(200, event)">BUY</button>
+</div>
+<div class="item">
+<h3>TROPICAL COCO</h3>
+<div class="img-container"><img src="./Assets/Tropical Coconut.png"></div>
+<p>150 ⭐</p>
+<button onclick="buy(150, event)">BUY</button>
+</div>
+<div class="item">
+<h3>SHRIMP & RICE </h3>
+<div class="img-container"><img src="./Assets/Shrimp.png"></div>
+<p>490 ⭐</p>
+<button onclick="buy(490, event)">BUY</button>
+</div>
+</div>
+</div>
+
+<!-- CONTADORES DE AMBOS EVENTOS ABAJO DEL TODO DE LA PÁGINA -->
+<div class="event-counters-container">
+    <div class="counter-card">
+        <img src="https://media.discordapp.net/attachments/1548881625306239080/1558315567352381571/Twisted_Brightney_Render.webp?ex=6acafdf7&is=6ac9ac77&hm=dd383b15538cd3eed8d7351d913c99cad85255fb3439511085d6cd64c19d8eea&=&format=webp&width=320&height=320" alt="Blackout Probability">
+        <div class="counter-info">
+            <span class="counter-title">BLACKOUT PROBABILITY</span>
+            <span class="counter-value" id="blackoutProbVal">40%</span>
+        </div>
+    </div>
+    <div class="counter-card">
+        <img src="https://media.discordapp.net/attachments/1548881625306239080/1558315567759491153/Twisted_Vee_Render.webp?ex=6acafdf7&is=6ac9ac77&hm=24f65d272a6ed00e8fa079e4e625a80c441e55ddb3bd870468d21ccae520cea1&=&format=webp&width=320&height=320" alt="Pop-ups Ads">
+        <div class="counter-info">
+            <span class="counter-title">POP-UPS ADS PROBABILITY </span>
+            <span class="counter-value" id="popupProbVal">60%</span>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<script>
+let coins = parseInt(localStorage.getItem("coins")) || 0;
+let totalItemsBought = parseInt(localStorage.getItem("phobos_items_bought")) || 0;
+let userName = localStorage.getItem("phobos_username") || "Guest";
+const coinsDisplay = document.getElementById("coins");
+const gainText = document.getElementById("gainText");
+const usernameInput = document.getElementById("usernameInput");
+usernameInput.value = userName;
+
+function saveUsername(val){
+    userName = val.trim() || "Guest";
+    localStorage.setItem("phobos_username", userName);
+    updateLeaderboards();
+}
+function updateCoins(){
+    coinsDisplay.textContent = coins;
+    localStorage.setItem("coins", coins);
+    updateLeaderboards();
+}
+updateCoins();
+function reward(){
+    const amount = Math.floor(Math.random()*26)+6;
+    coins += amount;
+    gainText.textContent = `You earned ${amount} stars! ⭐`;
+    updateCoins();
+}
+setInterval(reward,60000);
+
+function setupQuantityControls(){
+    const items = document.querySelectorAll(".items .item");
+    items.forEach(itemEl => {
+        const originalBtn = itemEl.querySelector("button:not(.qty-btn)");
+        const priceEl = itemEl.querySelector("p");
+        
+        if (originalBtn && !itemEl.querySelector(".item-bottom-content")) {
+            const bottomWrapper = document.createElement("div");
+            bottomWrapper.className = "item-bottom-content";
+
+            const controlsWrapper = document.createElement("div");
+            controlsWrapper.className = "buy-controls";
+            
+            const qtyContainer = document.createElement("div");
+            qtyContainer.className = "quantity-controls";
+            qtyContainer.innerHTML = `
+                <button class="qty-btn" type="button" onclick="changeQty(this, -1)">-</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn" type="button" onclick="changeQty(this, 1)">+</button>
+            `;
+            
+            originalBtn.classList.add("buy-btn");
+            
+            bottomWrapper.appendChild(priceEl);
+            
+            controlsWrapper.appendChild(qtyContainer);
+            controlsWrapper.appendChild(originalBtn);
+            bottomWrapper.appendChild(controlsWrapper);
+
+            let discountContainer = document.createElement("div");
+            discountContainer.className = "discount-container";
+            bottomWrapper.appendChild(discountContainer);
+
+            itemEl.appendChild(bottomWrapper);
+        }
+    });
+}
+
+function changeQty(btn, delta){
+    const container = btn.closest(".quantity-controls");
+    const valSpan = container.querySelector(".qty-val");
+    let current = parseInt(valSpan.textContent) || 1;
+    current += delta;
+    if (current < 1) current = 1;
+    valSpan.textContent = current;
+}
+
+let activeDiscounts = {};
+function applyDiscounts(){
+    const items = document.querySelectorAll(".items .item");
+    const FORTY_EIGHT_HOURS = 48 * 60 * 60 * 1000;
+    const lastTime = localStorage.getItem("phobos_discount_time");
+    let savedDiscounts = JSON.parse(localStorage.getItem("phobos_discounts_data"));
+    const now = Date.now();
+    if (!lastTime || (now - parseInt(lastTime)) >= FORTY_EIGHT_HOURS || !savedDiscounts) {
+        const selectedIndices = [];
+        while(selectedIndices.length < 3){
+            const rand = Math.floor(Math.random() * items.length);
+            if(!selectedIndices.includes(rand)){
+                selectedIndices.push(rand);
+            }
+        }
+        const usedPercentages = [];
+        savedDiscounts = {};
+        selectedIndices.forEach(idx => {
+            let pct;
+            do {
+                pct = Math.floor(Math.random() * 41) + 10;
+            } while (usedPercentages.includes(pct));
+            
+            usedPercentages.push(pct);
+            savedDiscounts[idx] = pct;
+        });
+        localStorage.setItem("phobos_discount_time", now.toString());
+        localStorage.setItem("phobos_discounts_data", JSON.stringify(savedDiscounts));
+    }
+    activeDiscounts = savedDiscounts;
+    items.forEach((itemEl, index) => {
+        const priceEl = itemEl.querySelector("p");
+        let originalPrice = parseInt(priceEl.getAttribute("data-original-price"));
+        if (isNaN(originalPrice)) {
+            originalPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, ''));
+            priceEl.setAttribute("data-original-price", originalPrice);
+        }
+
+        let container = itemEl.querySelector(".discount-container");
+        if (activeDiscounts[index] !== undefined) {
+            const pct = activeDiscounts[index];
+            const discountedPrice = Math.round(originalPrice * (1 - pct / 100));
+            priceEl.innerHTML = `<s class="original-price">${originalPrice} ⭐</s> <span class="discounted-price">${discountedPrice} ⭐</span>`;
+            if (container) {
+                container.innerHTML = `<span class="discount-label">DISCOUNT VALUE: -${pct}%</span>`;
+            }
+        } else {
+            if (container) {
+                container.innerHTML = "";
+            }
+        }
+    });
+}
+
+function buy(basePrice, evt){
+    const e = evt || window.event;
+    const itemCard = e ? e.target.closest(".item") : null;
+    const items = Array.from(document.querySelectorAll(".items .item"));
+    const itemIndex = itemCard ? items.indexOf(itemCard) : -1;
+    let qty = 1;
+    if (itemCard) {
+        const qtySpan = itemCard.querySelector(".qty-val");
+        if (qtySpan) qty = parseInt(qtySpan.textContent) || 1;
+    }
+    let originalBasePrice = basePrice;
+    if (itemCard) {
+        const priceEl = itemCard.querySelector("p");
+        const storedPrice = parseInt(priceEl.getAttribute("data-original-price"));
+        if (!isNaN(storedPrice)) {
+            originalBasePrice = storedPrice;
+        }
+    }
+    let unitPrice = originalBasePrice;
+    if (itemIndex !== -1 && activeDiscounts[itemIndex] !== undefined) {
+        const pct = activeDiscounts[itemIndex];
+        unitPrice = Math.round(originalBasePrice * (1 - pct / 100));
+    }
+    const totalPrice = unitPrice * qty;
+    const itemName = itemCard ? itemCard.querySelector("h3").textContent : "Item";
+    if(coins >= totalPrice){
+        coins -= totalPrice;
+        totalItemsBought += qty;
+        localStorage.setItem("phobos_items_bought", totalItemsBought);
+        updateCoins();
+        alert(`Transaction successful: Acquired ${qty}x ${itemName} for a total of ${totalPrice} ⭐.`);
+    }else{
+        alert(`Transaction failed: Insufficient balance. Required: ${totalPrice} ⭐.`);
+    }
+}
+
+function updateLeaderboards(){
+    const dummyStars = [
+        { name: "AstralCat", val: 1200 },
+        { name: "Nebula", val: 850 },
+        { name: "CyberGamer", val: 500 },
+        { name: "Starlight", val: 320 }
+    ];
+    const dummyItems = [
+        { name: "Starlight", val: 45 },
+        { name: "AstralCat", val: 30 },
+        { name: "CyberGamer", val: 18 },
+        { name: "Nebula", val: 12 }
+    ];
+    const currentStarsList = [...dummyStars, { name: userName, val: coins, isUser: true }];
+    currentStarsList.sort((a, b) => b.val - a.val);
+    const top5Stars = currentStarsList.slice(0, 5);
+    const starsListEl = document.getElementById("starsBoard");
+    starsListEl.innerHTML = top5Stars.map((item, idx) => `
+        <li class="board-item ${item.isUser ? 'highlight' : ''}">
+            <span class="board-rank">#${idx + 1}</span>
+            <span class="board-name">${item.name}</span>
+            <span class="board-val">${item.val} ⭐</span>
+        </li>
+    `).join("");
+
+    const currentItemsList = [...dummyItems, { name: userName, val: totalItemsBought, isUser: true }];
+    currentItemsList.sort((a, b) => b.val - a.val);
+    const top5Items = currentItemsList.slice(0, 5);
+    const itemsListEl = document.getElementById("itemsBoard");
+    itemsListEl.innerHTML = top5Items.map((item, idx) => `
+        <li class="board-item ${item.isUser ? 'highlight' : ''}">
+            <span class="board-rank">#${idx + 1}</span>
+            <span class="board-name">${item.name}</span>
+            <span class="board-val">${item.val} items</span>
+        </li>
+    `).join("");
+}
+
+setupQuantityControls();
+applyDiscounts();
+
+function checkNewUser(){
+    let totalNewUsers = parseInt(localStorage.getItem("phobos_unique_users")) || 0;
+    const hasVisited = localStorage.getItem("phobos_user_visited");
+    if (!hasVisited) {
+        totalNewUsers += 1;
+        localStorage.setItem("phobos_unique_users", totalNewUsers);
+        localStorage.setItem("phobos_user_visited", "true");
+    }
+    document.getElementById("newUsersCount").textContent = totalNewUsers;
+}
+checkNewUser();
+
+// --- FUNCIÓN PARA ACTUALIZAR LOS CONTADORES EN TIEMPO REAL ---
+function updateProbabilityDisplays() {
+    const bVal = document.getElementById("blackoutProbVal");
+    const pVal = document.getElementById("popupProbVal");
+    if (bVal) bVal.textContent = blackoutChance + "%";
+    if (pVal) pVal.textContent = popupChance + "%";
+}
+
+// --- SISTEMA DEL EVENTO DE LAS 4 VENTANAS (PROBABILIDAD DINÁMICA) ---
+let popupChance = parseInt(localStorage.getItem("phobos_popup_chance")) || 60;
+const popupImages = [
+    "https://cdn.discordapp.com/attachments/1552098143724634122/1557951836261191760/LOOKATME-Vee.webp?ex=6aca53f7&is=6ac90277&hm=a0293b474cf5f69742802f440fddb53a0b357473606c3142d763d6abf463f5fa&",
+    "https://media.discordapp.net/attachments/1552098143724634122/1557951837276082196/VeeAdvertisingHerMic.webp?ex=6aca53f7&is=6ac90277&hm=091f3136a1d3950ab617a4ec5dbc16ea22b544802835b3e253801605bb793a38&=&format=webp&width=512&height=377",
+    "https://media.discordapp.net/attachments/1552098143724634122/1557951838589034506/EpikGameShow.webp?ex=6aca53f7&is=6ac90277&hm=561f245f7141d4343029e1bd87dceb86545c7f872c47f5a240e5485da26bea80&=&format=webp&width=512&height=377",
+    "https://media.discordapp.net/attachments/1552098143724634122/1557951839843123240/Vee_Plush_Marketable.webp?ex=6aca53f7&is=6ac90277&hm=b8cb3db346625d93acaebd46d631b0fde8c9910c797144ebc3bb475a2de51cd0&=&format=webp&width=512&height=377"
+];
+let activePopupsCount = 0;
+let popupTimer = null;
+
+function evaluatePopupEvent() {
+    const roll = Math.random() * 100;
+    if (roll < popupChance) {
+        spawnPopups();
+    }
+    updateProbabilityDisplays();
+}
+
+function spawnPopups() {
+    document.querySelectorAll(".popup-window").forEach(p => p.remove());
+    activePopupsCount = 4;
+
+    const positions = [
+        { top: "8%", left: "4%" },
+        { top: "10%", right: "4%" },
+        { bottom: "8%", left: "6%" },
+        { bottom: "10%", right: "6%" }
+    ];
+
+    popupImages.forEach((imgSrc, index) => {
+        const win = document.createElement("div");
+        win.className = "popup-window";
+        win.style.top = positions[index].top || "auto";
+        win.style.bottom = positions[index].bottom || "auto";
+        win.style.left = positions[index].left || "auto";
+        win.style.right = positions[index].right || "auto";
+
+        win.innerHTML = `
+            <div class="popup-header">
+                <span>ADVERTISEMENT #${index + 1}</span>
+                <button class="popup-btn-close" onclick="closePopup(this)">×</button>
+            </div>
+            <div class="popup-body">
+                <img src="${imgSrc}" alt="Popup">
+            </div>
+        `;
+        document.body.appendChild(win);
+    });
+
+    popupTimer = setTimeout(() => {
+        if (activePopupsCount > 0) {
+            const penalty = Math.floor(Math.random() * 31) + 30;
+            coins = Math.max(0, coins - penalty);
+            updateCoins();
+            alert(`Timeout Protocol Triggered: Popup clearance sequence failed. Penalty applied: -${penalty} ⭐.`);
+            document.querySelectorAll(".popup-window").forEach(p => p.remove());
+            activePopupsCount = 0;
+        }
+    }, 60000);
+}
+
+function closePopup(btn) {
+    const popup = btn.closest(".popup-window");
+    if (popup) {
+        popup.remove();
+        activePopupsCount--;
+        if (activePopupsCount === 0) {
+            clearTimeout(popupTimer);
+            const rewardAmount = Math.floor(Math.random() * 36) + 10;
+            coins += rewardAmount;
+            updateCoins();
+            alert(`Protocol Executed Successfully: All instances cleared within interval. Reward allocated: +${rewardAmount} ⭐.`);
+        }
+    }
+}
+
+setInterval(evaluatePopupEvent, 120000);
+
+// --- SISTEMA DEL EVENTO BLACKOUT ---
+let blackoutChance = parseInt(localStorage.getItem("phobos_blackout_chance")) || 40;
+let activeBlackoutPopup = null;
+let blackoutTimer = null;
+const blackoutImage = "https://media.discordapp.net/attachments/1552098143724634122/1558199412226920478/Sparkplug_Icon.png?ex=6aca91c9&is=6ac94049&hm=619c44e82b0257720a2d8a8ffb7a916636537e5e004eb92760161d6808bf25da&=&format=webp&quality=lossless&width=320&height=320";
+
+function evaluateBlackoutEvent() {
+    const roll = Math.random() * 100;
+    if (roll < blackoutChance) {
+        triggerBlackout();
+    }
+    updateProbabilityDisplays();
+}
+
+function triggerBlackout() {
+    if (activeBlackoutPopup) return;
+
+    const layer = document.getElementById("blackoutLayer");
+    layer.style.display = "block";
+
+    function updateCursor(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+        layer.style.background = `radial-gradient(circle 120px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,0.98) 100%)`;
+    }
+
+    window.addEventListener("mousemove", updateCursor);
+
+    setTimeout(() => {
+        window.removeEventListener("mousemove", updateCursor);
+        layer.style.display = "none";
+        layer.style.background = "black";
+    }, 10000);
+
+    const win = document.createElement("div");
+    win.className = "popup-window";
+    win.style.top = "50%";
+    win.style.left = "50%";
+    win.style.transform = "translate(-50%, -50%) scale(1)";
+    win.style.animation = "popIn 0.3s ease-out";
+
+    win.innerHTML = `
+        <div class="popup-header" style="background: #e2e2e2; border-bottom: 3px solid #4a4a4a;">
+            <span style="color: #ffffff;">BLACKOUT</span>
+            <button class="popup-btn-close" onclick="closeBlackoutPopup(this)">×</button>
+        </div>
+        <div class="popup-body">
+            <img src="${blackoutImage}" alt="Blackout Popup">
+        </div>
+    `;
+    document.body.appendChild(win);
+    activeBlackoutPopup = win;
+
+    blackoutTimer = setTimeout(() => {
+        if (activeBlackoutPopup) {
+            const penalty = Math.floor(Math.random() * 31) + 30;
+            coins = Math.max(0, coins - penalty);
+            updateCoins();
+            alert(`Timeout Protocol Triggered: Blackout window clearance failed. Penalty applied: -${penalty} ⭐.`);
+            activeBlackoutPopup.remove();
+            activeBlackoutPopup = null;
+        }
+    }, 60000);
+}
+
+function closeBlackoutPopup(btn) {
+    const popup = btn.closest(".popup-window");
+    if (popup) {
+        popup.remove();
+        activeBlackoutPopup = null;
+        clearTimeout(blackoutTimer);
+        const rewardAmount = Math.floor(Math.random() * 36) + 10;
+        coins += rewardAmount;
+        updateCoins();
+        alert(`Protocol Executed Successfully: Blackout window cleared within interval. Reward allocated: +${rewardAmount} ⭐.`);
+    }
+}
+
+setInterval(evaluateBlackoutEvent, 150000);
+
+// --- ACTUALIZACIÓN DINÁMICA CADA 2 MINUTOS: RANGO 20% A 60% SIN SUPERAR EL 100% EN TOTAL ---
+setInterval(() => {
+    blackoutChance = Math.floor(Math.random() * 41) + 20; // Entre 20 y 60
+    popupChance = Math.floor(Math.random() * 41) + 20;    // Entre 20 y 60
+    
+    // Aseguramos estrictamente que la suma de ambos no supere el 100% ajustando el de pop-ups si es necesario
+    if (blackoutChance + popupChance > 100) {
+        popupChance = 100 - blackoutChance;
+    }
+
+    localStorage.setItem("phobos_blackout_chance", blackoutChance);
+    localStorage.setItem("phobos_popup_chance", popupChance);
+    updateProbabilityDisplays();
+}, 120000);
+
+// Inicializar los valores de los contadores en pantalla al cargar
+updateProbabilityDisplays();
+</script>
+
+<!-- INCREMENTO MENSUAL AUTOMÁTICO (DE 3 A 25 VISITAS) -->
+<script>
+(function() {
+    let lastCheck = localStorage.getItem("phobos_last_monthly_increment");
+    let now = Date.now();
+    let oneMonthMs = 30 * 24 * 60 * 60 * 1000;
+
+    if (!lastCheck) {
+        localStorage.setItem("phobos_last_monthly_increment", now.toString());
+    } else if (now - parseInt(lastCheck) >= oneMonthMs) {
+        let randomIncrement = Math.floor(Math.random() * 23) + 3;
+        let currentUsers = parseInt(localStorage.getItem("phobos_unique_users")) || 0;
+        localStorage.setItem("phobos_unique_users", currentUsers + randomIncrement);
+        localStorage.setItem("phobos_last_monthly_increment", now.toString());
+    }
+})();
+</script>
+</body>
+</html>
